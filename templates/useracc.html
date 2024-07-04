@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAP - Automotive Smart Adaptive Parking Systems</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #111;
+            padding: 1rem 0;
+            border-bottom: 2px solid #444;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            color: #fff;
+            margin: 0;
+        }
+
+        nav a {
+            color: #bbb;
+            margin: 0 1rem;
+            text-decoration: none;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .register-btn, .logout-btn {
+            background-color: #ff0;
+            color: #000;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+        main {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero {
+            background-color: #222;
+            padding: 3rem 2rem;
+            animation: zoomIn 1s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .hero-buttons {
+            margin-top: 1rem;
+        }
+
+        .book-now-btn {
+            background-color: #ff0;
+            color: #000;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 2rem 1rem;
+            background-color: #111;
+        }
+
+        .feature {
+            background-color: #333;
+            padding: 1rem;
+            border: 1px solid #444;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><img src="{{ url_for('static', filename='your_image.png') }}" width="200" height="150" alt="Logo"></h1>
+            <nav>
+                <a>Fare Calc</a>
+                <a href="{{ url_for('about_us') }}">About Us</a>
+                <a href="{{ url_for('contact_us') }}">Contact Us</a>
+                <a href="{{ url_for('map') }}">Find Nearest Location</a>
+                <a href="{{ url_for('book') }}" class="book-now-btn">Book Now</a>
+            </nav>
+            <div>
+                <span class="text-yellow-500 mr-4">Hello, {{ user_name }}</span>
+                <a href="{{ url_for('index') }}" class="logout-btn">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Welcome to ASAP - Automotive Smart Adaptive Parking Systems</h2>
+            <p>Effortless Parking Solutions at Your Fingertips</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('book') }}" class="book-now-btn">Book Now</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>Automated Parking Assistance</h3>
+                <p>Our system guides you to available parking spots with ease.</p>
+            </div>
+            <div class="feature">
+                <h3>Real-time Parking Availability</h3>
+                <p>Get live updates on parking space availability to save time and reduce stress.</p>
+            </div>
+            <div class="feature">
+                <h3>Secure Payment Options</h3>
+                <p>Convenient and secure payment methods for hassle-free transactions.</p>
+            </div>
+            <div class="feature">
+                <h3>User-Friendly Interface</h3>
+                <p>Intuitive design for a seamless booking experience for all users.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
