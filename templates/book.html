@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Book Now</title>
+</head>
+<body class="bg-black text-white">
+    <section class="relative">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-5xl text-4xl font-medium title-font mb-6 text-yellow-500">Book Now</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-lg text-gray-400">Please fill out the form to book your slot and we will get back to you shortly.</p>
+            </div>
+            <div class="lg:w-1/2 md:w-2/3 mx-auto bg-gray-800 p-10 rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                <div class="flex flex-wrap -m-2">
+                    <div class="p-2 w-full">
+                        <div class="relative">
+                            <label for="car-number" class="leading-7 text-sm text-gray-400">Car Number</label>
+                            <input type="text" id="car-number" name="car-number" class="w-full bg-gray-700 rounded-lg border border-gray-600 focus:border-yellow-500 focus:bg-gray-800 focus:ring-2 focus:ring-yellow-300 text-base outline-none text-white py-3 px-4 leading-8 transition-colors duration-200 ease-in-out" placeholder="Enter your car number" required>
+                            <p id="car-number-error" class="text-red-500 text-xs mt-1 hidden">Please enter the car number in the format "AX 56 T 6789".</p>
+                        </div>
+                    </div>
+                    <div class="p-2 w-full">
+                        <div class="relative">
+                            <label for="arrival-time" class="leading-7 text-sm text-gray-400">Arrival Time</label>
+                            <input type="time" id="arrival-time" name="arrival-time" class="w-full bg-gray-700 rounded-lg border border-gray-600 focus:border-yellow-500 focus:bg-gray-800 focus:ring-2 focus:ring-yellow-300 text-base outline-none text-white py-3 px-4 leading-8 transition-colors duration-200 ease-in-out" required>
+                        </div>
+                    </div>
+                    <div class="p-2 w-full">
+                        <div class="relative">
+                            <label for="arrival-duration" class="leading-7 text-sm text-gray-400">Estimated Arrival Duration</label>
+                            <select id="arrival-duration" name="arrival-duration" class="w-full bg-gray-700 rounded-lg border border-gray-600 focus:border-yellow-500 focus:bg-gray-800 focus:ring-2 focus:ring-yellow-300 text-base outline-none text-white py-3 px-4 leading-8 transition-colors duration-200 ease-in-out" required>
+                                <option value="15">15 minutes</option>
+                                <option value="30">30 minutes</option>
+                                <option value="45">45 minutes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="p-2 w-full mt-4">
+                        <button id="book-now-button" class="flex mx-auto text-black bg-yellow-500 border-0 py-3 px-8 focus:outline-none hover:bg-yellow-600 rounded-lg text-lg shadow-lg transform hover:scale-105 transition-transform duration-500">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('book-now-button').addEventListener('click', function(event) {
+            event.preventDefault();
+            const carNumberInput = document.getElementById('car-number');
+            
+            // Check car number format before proceeding
+            const carNumberPattern = /^[A-Z]{2} \d{2} [A-Z] \d{4}$/; // Matches "AX 56 T 6789" format
+            if (!carNumberPattern.test(carNumberInput.value)) {
+                document.getElementById('car-number-error').classList.remove('hidden');
+                return;
+            }
+
+            // Proceed to confirmation page
+            window.location.href = 'confirmation.html';
+        });
+
+        document.getElementById('car-number').addEventListener('input', function() {
+            const carNumberInput = document.getElementById('car-number');
+            const carNumberPattern = /^[A-Z]{2} \d{2} [A-Z] \d{4}$/; // Matches "AX 56 T 6789" format
+            const carNumberError = document.getElementById('car-number-error');
+
+            if (carNumberPattern.test(carNumberInput.value)) {
+                carNumberError.classList.add('hidden');
+                carNumberInput.setCustomValidity('');
+            } else {
+                carNumberError.classList.remove('hidden');
+                carNumberInput.setCustomValidity('Invalid car number format. Please enter in the ex format "AX 56 T 6789".');
+            }
+        });
+    </script>
+</body>
+</html>
+
